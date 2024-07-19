@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<style>@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+    :root {
+      --text-color:#546e7a;
+      --highlight-color:#f97794;
+    }
+    * {
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: 'Open Sans', sans-serif;
+    }
+    *, ::after, ::before {
+      box-sizing: border-box;
+    }
+    html {
+        scroll-behavior:smooth;    
+    }
+    header {
+      position:fixed;
+      width:100%;
+      background:#fff;
+      height:50px;
+      display:flex;
+      align-items:center;
+      z-index:999;
+      border-bottom:1px solid #f1f1f1;
+    }
+    header .logo {
+      font-size:20px;
+      margin-left:2em;
+      margin-top:0px;
+    }
+    header .logo a {
+      color:var(--highlight-color);
+      text-decoration:none;
+    }
+    header input {
+      display:none;
+    }
+    header label {
+      position:absolute;
+      top:0;
+      right:0;
+      display:flex;
+      margin-right:2em;
+      align-items:center;
+      justify-content:center;
+      height:100%;
+      background:var(--highlight-color);
+      /*   padding:6px 10px; */
+      height:30px;
+      width:40px;
+      margin-top:10px;
+    
+    }
+    header label span, 
+    header label span:before, 
+    header label span:after {
+      position:relative;
+      height: 2px;
+      width: 1.3em;
+      background:#fff;
+      display:block;
+    }
+    header label span:before, 
+    header label span:after {
+      content:"";
+      position:absolute;
+    }
+    header label span:before {
+      top:7px;
+    }
+    header label span:after {
+      bottom:7px;
+    }
+    header nav {
+      position:absolute;
+      width:100%;
+      top:100%;
+      text-align: center;
+      transform:scale(1,0);
+      transition: transform 500ms ease;
+      transform-origin:top;
+      background:#fff;
+    }
+    header nav ul {
+      list-style:none;
+      margin:0;
+      padding:0;
+    }
+    header nav ul li {
+      margin-bottom:1em;
+    }
+    header nav ul li a {
+      color:  var(--text-color);
+      text-decoration:none;
+      font-size:14px;
+      opacity:0;
+      transition:opacity 150ms ease-in-out;
+    }
+    header nav ul li.active {
+      background:#f1f1f1;
+      transition: 1s ease-in 500ms;
+    }
+    header nav ul li.active a {
+      color:var(--highlight-color);  
+    }
+    header nav ul li a:hover {
+      color:var(--highlight-color);
+    }
+    header input:checked ~ nav {
+      transform:scale(1,1);
+    }
+    header input:checked ~ nav a {
+      opacity:1;
+      transition:opacity 150ms ease-in-out 250ms;
+    }
+    
+    .hero-container {
+      background-image:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.4)), url('https://cdn.pixabay.com/photo/2016/05/24/16/48/mountains-1412683_960_720.png');
+      background-size:cover;
+      background-position:center center;
+      height:100vh;
+      display:grid;
+      justify-content:center;
+      align-content:center;
+      color:#fff;
+      line-height:2.0;
+      text-align:center;
+    }
+    .hero-container a {
+      color:#fff;
+      text-decoration:none;
+      background:var(--highlight-color);
+      padding:5px 20px;
+      border-radius:40px;
+      justify-self:center;
+      margin-top:1em;
+      font-size:15px;
+    }
+    .hero-container a:hover {
+    
+    }
+    .services-container, .why-container, .blog-container, .contact-container{
+      padding:50px;
+    }
+    .services-container {
+      background:#f1f1f1;
+    }
+    .service-header, .why-header, .work-header, .pricing-header, .blog-header, .contact-header {
+      text-align:center;
+      margin:1.3em 0;
+      padding-bottom:50px;
+    }
+    .service-card-container, .why-card-container, .blog-card-container {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px,1fr));
+      grid-gap:40px;
+    }
+    .service-header h2, .why-header h2, .work-header h2, .pricing-header h2, .blog-header h2, .contact-header h2 {
+      letter-spacing:1.5px;
+      font-weight:bold;
+      margin-bottom:10px;
+    }
+    .service-cards {
+      text-align:center;
+      padding:30px 20px;
+      border:1px solid lightgrey;
+      border-radius: 3px;    
+    }
+    .why-cards {
+      display: flex;   
+      padding:10px;
+    }
+    .why-cards i {
+      color:var(--highlight-color);
+      font-size:2em;
+    }
+    .why-cards h3 {
+      color:var(--text-color);
+      margin-bottom:10px;
+    }
+    .why-cards .why-card-content {
+      margin-left:1.5em;    
+    }
+    .service-cards:hover {
+      border:none;
+      box-shadow: 10px 10px 15px #bdb9b9;
+      transition:200ms ease-in-out;
+    }
+    .service-cards:hover i {
+      background:none;
+    }
+    .service-cards i {
+      background:red;
+      height:60px;
+      width:60px;
+      line-height:60px;
+      text-align:center;
+      border-radius: 50%;
+      font-size:1.5em;
+      transition:background 500ms ease-in-out;
+    }
+    .service-cards h3 {
+      margin:.5em 0;
+      font-weight:600;
+    }
+    .service-header p, 
+    .service-cards p, 
+    .why-header p, 
+    .why-cards p, 
+    .pricing-header p, 
+    .blog-header p,
+    .contact-header p {
+      line-height:1.5;
+      color:var(--text-color);
+      font-size:14px;
+    }
+    .service-cards .fa-pencil-alt {
+      color:rgb(220,20,60);
+      background:rgba(220,20,60,.2);
+    }
+    .service-cards .fa-cog {
+      color:rgb(63, 195, 128);
+      background:rgba(63, 195, 128,.2);
+    }
+    .service-cards .fa-chart-bar {
+      color:rgb(1, 50, 67);
+      background:rgba(1, 50, 67,.2);
+    }
+    .service-cards .fa-layer-group {
+      color:rgb(244, 208, 63);
+      background:rgba(244, 208, 63,.2);
+    }
+    .service-cards .fa-tablet-alt {
+      color:rgb(115, 101, 152);
+      background:rgba(115, 101, 152,.2);
+    }
+    .service-cards .fa-briefcase {
+      color:var(--text-color);
+      background:lightgrey;
+    }
+    
+    .purchase-container {
+      background:#f1f1f1;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      height:400px;
+    }
+    .purchase-container p {
+      width:350px;
+      color:var(--text-color);
+      margin:2em 0;
+      line-height: 1.7;
+    }
+    .purchase-container a {
+      background:var(--highlight-color);
+      color:#fff;
+      font-size:15px;
+      padding:10px 30px;
+      text-decoration:none;
+      justify-self:center;
+      border-radius: 40px;
+    }
+    .purchase-container a:hover {
+    
+    }
+    .video-container {
+      background-image:linear-gradient(rgba(250,128,114,.5), rgba(250,128,114,.2)), 
+        url('https://cdn.pixabay.com/photo/2016/03/26/13/09/cup-of-coffee-1280537_960_720.jpg');
+      background-size:cover;
+      background-position: center;
+      height:350px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      color:#fff;
+    }
+    .video-container i {
+      font-size:2em;
+      border:3px solid #fff;
+      border-radius: 50%;
+      height:80px;
+      width:80px;
+      line-height: 80px;
+      display:grid;
+      justify-content:center;
+    }
+    .video-container h1 {
+      margin:10px 0;
+    }
+    .video-container p {
+      font-size:18px;
+    }
+    .work-container {
+      padding:40px;
+      background:#f1f1f1;
+    }
+    .work-header p {
+      margin:10px 0;
+      color:var(--text-color);
+    }
+    .work-header-links a {
+      text-decoration:none;
+      background:var(--highlight-color);
+      color:#fff;
+      border:1px solid #fff;
+      padding:10px 24px;
+      display:inline-block;
+      border-radius: 40px;
+      font-size:12px;
+      margin:5px 0;
+    }
+    .work-image-container {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      grid-gap:15px;
+    }
+    
+    .work-image-card {
+      overflow:hidden;
+      border: 2px solid #fff;
+      position:relative;
+    }
+    .image-over-content {
+      position:absolute;
+      /* background:rgba(0,0,0,.5); */
+      height:100%;
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      color:#fff;
+      opacity:0;
+      top:0;
+      left:0;
+      transition:all 500ms ease-in-out 200ms;
+    }
+    .image-over-content i, .image-over-content p {
+      font-size:1.2em;
+    }
+    .work-image-card img {
+      width:100%;
+      height:100%;
+      position:relative;
+      object-fit:cover;
+      transition: 1s ease-in-out;
+    }
+    .work-image-card:hover img {
+      transform:scale(1.4);
+    }
+    .work-image-card:hover .image-over-content{
+      opacity:1;
+      background:rgba(0,0,0,.3);
+    }
+    .pricing-container {
+      padding:10px;
+    }
+    .pricing-card-container {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      grid-gap:40px;
+      text-align:center;
+    }
+    .pricing-card {
+      border:1px solid #f1f1f1;
+      box-shadow:6px 6px 8px rgb(206, 206, 206);
+      transition: box-shadow 500ms ease;
+      margin-bottom:3em;
+    }
+    .pricing-card:hover {
+      border:none;
+      box-shadow:12px 12px 13px rgb(206, 206, 206);
+    }
+    .plan-price {
+      padding:15px 0;
+      border-bottom:1px solid #f1f1f1;
+    }
+    .plan-price h3{
+      margin-bottom: 10px;
+      color:var(--text-color);
+    }
+    .plan-price p{
+      font-size:2em;
+    }
+    .plan-price span {
+      color:var(--text-color);
+      font-size:12px;
+      margin-left:5px;
+    }
+    .pricing-card-container ul {
+      margin:0;
+      padding:0;
+      list-style:none;
+    }
+    .pricing-card-container ul li {
+      padding: 15px 0;
+      color:var(--text-color);
+      font-size:12px;
+    }
+    .pricing-card-container ul li:nth-child(even) {
+      background:#f1f1f1;
+    }
+    .pricing-card-container ul li a {
+      display:inline-block;
+      background:var(--highlight-color);
+      color:#fff;
+      border-radius: 40px;
+      padding:10px 20px;
+      text-decoration:none;
+      margin:1em 0;
+      font-size:12px;
+    }
+    .stats-container {
+      background:var(--highlight-color);
+      padding:50px 30px;
+      display:grid;
+      grid-gap:20px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-auto-rows: auto;
+      justify-content: space-evenly;
+      align-content: center;
+      color:#fff;
+    }
+    .stat-card {
+      border:1px solid #fff;
+      padding:20px;
+      display:flex;
+      flex-direction: column;
+      justify-content:center;
+      align-items:center;
+    }
+    .stat-card i {
+      font-size:2em;
+    }
+    .stat-card h1 {
+      margin:10px 0;
+    }
+    .subscribe-container {
+      background:linear-gradient(rgba(0,0,0,.2), rgba(0,0,0,.5)),
+        url('https://images.pexels.com/photos/273222/pexels-photo-273222.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+      background-size:cover;
+      background-position: center;
+      display:grid;
+      grid-gap:20px;
+      padding:50px;
+    }
+    .newsletter {
+      padding:20px;
+      color:var(--text-color);
+      background:#fff;
+    }
+    .newsletter h3 {
+    
+    }
+    .newsletter p {
+      margin:5px 0;
+    }
+    .newsletter form {
+      display:flex;
+      flex-direction: column;
+      margin-top:1em;
+    }
+    .newsletter form input {
+      margin:10px 0;
+      padding:10px;
+      border:1px solid #f1f1f1;
+      border-radius: 40px;
+    }
+    .newsletter form input:focus {
+      border:1px solid var(--highlight-color);
+      border-radius: 40px;
+      outline:none;
+    }
+    
+    .newsletter a {
+      background:var(--highlight-color);
+      color:#fff;
+      padding:10px 20px;
+      border-radius: 40px;
+      text-decoration:none;
+      display:block;
+      margin:1em 0;
+      text-align: center; 
+    }
+    .sub-card-container {
+      display:grid;
+      grid-gap:20px;
+    }
+    .sub-card-content {
+      display:flex;
+      padding:20px;
+      background:#fff;
+    }
+    .sub-card-content i {
+      font-size:2em;
+      color:var(--highlight-color);
+    }
+    .sub-card {
+      margin-left:1em;
+      color:var(--text-color);
+    }
+    .sub-card h5 {
+      margin-bottom:10px;
+      font-size:1em;
+    }
+    .sub-card p {
+      line-height: 1.5;
+    }
+    .blog-card {
+      box-shadow:5px 5px 5px #bdb9b9;
+    }
+    .blog-card:hover {
+      box-shadow: 10px 10px 15px #bdb9b9;
+    }
+    .blog-card-image img {
+      width:100%;
+      height:100%;
+    }
+    .blog-card-content {
+      padding:20px;
+    }
+    .blog-card .date {
+      color:var(--text-color);
+    }
+    .blog-card-content a {
+      text-decoration:none;
+      color:var(--text-color);
+    }
+    .blog-card-content h3 {
+      margin:10px 0;
+    }
+    .meta-tags span {
+      color:var(--text-color);
+      margin-right:10px;
+    }
+    .meta-tags span:hover, .blog-card-content a:hover {
+      color:var(--highlight-color);
+    }
+    .contact-form {
+    
+    }
+    .contact-form form {
+      display:flex;
+      flex-direction: column;
+    }
+    .contact-form form input {
+      border:1px solid #f1f1f1;
+      background:#f1f1f1;
+      border-radius: 40px;
+      padding:10px;
+      margin:10px 0;
+    }
+    .contact-form form input:focus, .contact-form form textarea:focus {
+      border:1px solid var(--highlight-color);
+      outline:none;
+    }
+    .contact-form form textarea {
+      background:#f1f1f1;
+      margin:10px 0;
+      border:none;
+      padding:10px;
+    }
+    .contact-form form .btn {
+      background:var(--highlight-color);
+      color:#fff;
+      border-radius: 40px;
+      border:none;
+      align-self:flex-start;
+      padding:10px 20px;
+    }
+    .contact-location i, .contact-email i, .contact-phone i {
+      color:var(--highlight-color);
+      font-size:1.5em;
+    }
+    .contact-location h5, .contact-email h5, .contact-phone h5 {
+      font-size:19px;
+      margin:10px 0;
+    }
+    .contact-location p, .contact-email p, .contact-phone p {
+      color:var(--text-color);
+    }
+    .contact-address > div {
+      margin-top:1em;
+    }
+    .contact-social-links {
+      display:flex;
+    }
+    .contact-social-links i {
+      color:#fff;
+      font-size:1.2em;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      width:50px;
+      height:50px;
+      background:var(--highlight-color);
+      border-radius: 50%;
+    }
+    .contact-social-links a{
+      display:inline-block;
+      text-decoration:none;
+      margin-right:10px;
+    }
+    .contact-social-links a:hover .fa-facebook-f {
+      background:#3b5998;
+    }
+    .contact-social-links a:hover .fa-twitter {
+      background:#55acee;
+    }
+    .contact-social-links a:hover .fa-instagram {
+      background:#517fa4;
+    }
+    .contact-social-links a:hover .fa-google-plus-g {
+      background:#dc4e41;
+    }
+    @media (min-width:768px) {
+      .contact-form-container {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        grid-gap: 30px;
+      }
+      .pricing-card:nth-child(2) {
+        transform:scale(1.1);
+      }
+      header input, header label {
+        display:none;
+      }
+      header {
+        display:grid;
+        grid-template-columns:50px 200px 1fr 50px;
+        align-content:center;
+        height:70px;
+      }
+      header .logo {
+        grid-column:2/3;
+        margin:0;
+      }
+      header nav {
+        position:static;
+        transform:none;
+        transition:none;
+        grid-column:3/4;
+      }
+      header nav ul {
+        margin:0;
+        padding:0;
+        display:flex;
+        justify-content:space-between;
+      }
+      header nav ul li {
+        margin:0;
+        padding:0;
+      }
+      header nav ul li a {
+        opacity:1;
+      }
+      header nav ul li.active {
+        background:none;
+        transition:none;
+      }
+    
+      @media (min-width:992px) {
+        .subscribe-container {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-gap: 50px;       
+        }   
+        .newsletter {
+          align-self:start;
+          padding:50px;
+        }
+        header {
+          grid-gap:40px;
+        }
+      }
+    
+      @media (min-width:1200px) {
+        header  {
+          grid-template-columns:150px 200px 1fr 150px;
+          grid-gap:50px;
+        }
+      }}
+      
+      
+      </style>
+<body>
+    <header>
+        <div class="logo">
+            <a href="#home">
+            <i class="far fa-lightbulb"></i>ESSENCE</a>
+        </div>
+            <input type="checkbox" id="check">
+            <nav>
+                <ul>
+                    <li class="active"><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#works">Works</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#subscribe">Subscribe</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+                <label for="check"><span></span></label>
+    </header>
+                
+    <div id="home" class="hero-container">
+        <h3>Handcrafted</h3>
+        <h3>Cutting Edge Features</h3>
+        <p>Parallax, Video, Product, Premium Addons and.<br> More...</p>
+        <a href="#">View Works</a>
+    </div>
+              
+    <div id="services" class="services-container">
+        <div class="service-header">
+            <h2>OUR SERVICES</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quia minus quod aliquid.</p>
+        </div>
+              
+        <div class="service-card-container">
+            <div class="service-cards">
+                <i class="fas fa-pencil-alt"></i>
+                <h3>Content Writing</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae accusantium voluptates consectetur adipisci a obcaecati.</p>
+            </div>
+            <div class="service-cards">
+                <i class="fas fa-cog"></i>
+                <h3>Web Developement</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae accusantium voluptates consectetur adipisci a obcaecati.</p>
+            </div>
+            <div class="service-cards">
+                <i class="fas fa-chart-bar"></i>
+                <h3>Graphic Design</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae accusantium voluptates consectetur adipisci a obcaecati.</p>
+            </div>
+            <div class="service-cards">
+                <i class="fas fa-layer-group"></i>
+                <h3>UI/UX Design</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae accusantium voluptates consectetur adipisci a obcaecati.</p>
+            </div>
+            <div class="service-cards">
+                <i class="fas fa-tablet-alt"></i>
+                <h3>App Development</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae accusantium voluptates consectetur adipisci a obcaecati.</p>
+            </div>
+            <div class="service-cards">
+                <i class="fas fa-briefcase"></i>
+                <h3>Digital Marketing</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae accusantium voluptates consectetur adipisci a obcaecati.</p>
+            </div>
+        </div>
+    </div>
+              
+    <div id="features" class="why-container">
+        <div class="why-header">
+            <h2>WHY CHOOSE US</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quia minus quod aliquid.</p>
+        </div>
+              
+        <div class="why-card-container">
+            <div class="why-cards">
+                <i class="fas fa-compress-arrows-alt"></i>
+                <div class="why-card-content">
+                    <h3>Refreshing Design</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae accusantium voluptates consectetur adipisci a obcaecati.</p>
+                </div>
+            </div>
+            <div class="why-cards">
+                <i class="fas fa-tablet-alt"></i>
+                <div class="why-card-content">
+                    <h3>Fully Responsive</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae accusantium voluptates consectetur adipisci a obcaecati.</p>
+                </div>
+            </div>
+            <div class="why-cards">
+                <i class="fas fa-rocket"></i>
+                <div class="why-card-content">
+                    <h3>Fast & Smooth</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae accusantium voluptates consectetur adipisci a obcaecati.</p>
+                </div>
+            </div>
+            <div class="why-cards">
+                <i class="fas fa-layer-group"></i>
+                <div class="why-card-content">
+                    <h3>SEO Optimized</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae accusantium voluptates consectetur adipisci a obcaecati.</p>
+                </div>
+            </div>
+            <div class="why-cards">
+                <i class="fab fa-envira"></i>
+                <div class="why-card-content">
+                    <h3>Clean Code</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae accusantium voluptates consectetur adipisci a obcaecati.</p>
+                </div>
+            </div>
+            <div class="why-cards">
+                <i class="fas fa-pencil-alt"></i>
+                <div class="why-card-content">
+                    <h3>Free 24/7 Support</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae accusantium voluptates consectetur adipisci a obcaecati.</p>
+                </div>
+            </div>
+        </div>
+    </div>  
+              
+    <div id="works" class="work-container">
+        <div class="work-header">
+            <h2>OUR WORKS</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quia minus quod aliquid.</p>
+            <div class="work-header-links">
+                <a href="#">All</a>
+                <a href="#">Design</a>
+                <a href="#">Development</a>
+                <a href="#">Print</a>
+            </div>
+        </div>
+    
+        <div class="work-image-container">
+            <div class="work-image-card">
+                <img src="https://cdn.pixabay.com/photo/2014/05/02/21/50/home-office-336378_960_720.jpg" alt="">
+                <div class="image-over-content">
+                    <i class="fas fa-search-plus"></i>
+                    <p>View Project</p>
+                </div>
+            </div>
+            <div class="work-image-card">
+                <img src="https://cdn.pixabay.com/photo/2015/07/17/22/43/student-849825_960_720.jpg" alt="">
+                <div class="image-over-content">
+                    <i class="fas fa-search-plus"></i>
+                    <p>View Project</p>
+                </div>
+            </div>
+            <div class="work-image-card">
+                <img src="https://cdn.pixabay.com/photo/2018/02/16/10/52/beverage-3157395_960_720.jpg" alt="">
+                <div class="image-over-content">
+                    <i class="fas fa-search-plus"></i>
+                    <p>View Project</p>
+                </div>
+            </div>
+            <div class="work-image-card">
+                <img src="https://cdn.pixabay.com/photo/2015/06/24/16/36/office-820390_960_720.jpg" alt="">
+                <div class="image-over-content">
+                    <i class="fas fa-search-plus"></i>
+                    <p>View Project</p>
+                </div>
+            </div>
+            <div class="work-image-card">
+                <img src="https://cdn.pixabay.com/photo/2015/01/09/11/11/office-594132_960_720.jpg" alt="">
+                <div class="image-over-content">
+                    <i class="fas fa-search-plus"></i>
+                    <p>View Project</p>
+                </div>
+            </div>
+            <div class="work-image-card">
+                <img src="https://cdn.pixabay.com/photo/2017/06/09/07/37/notebook-2386034_960_720.jpg" alt="">
+                <div class="image-over-content">
+                    <i class="fas fa-search-plus"></i>
+                    <p>View Project</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="pricing" class="pricing-container">
+        <div class="pricing-header">
+            <h2>PRICING PLANS</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quia minus quod aliquid.</p>
+        </div>
+    
+        <div class="pricing-card-container">
+            <div class="pricing-card">
+                <div class="plan-price">
+                    <h3>Starter Plan</h3>
+                    <p>49$<span>/mo</span></p>
+                </div>
+                <ul>
+                    <li>Consectetur adipiscing</li>
+                    <li>Nunc luctus nulla et tellus</li>
+                    <li>Suspendisse quis metus</li>
+                    <li>Vestibul varius fermentum erat</li>
+                    <li>-</li>
+                    <li><a href="#">Get Plan</a></li>
+                </ul>
+            </div>
+        
+            <div class="pricing-card">
+                <div class="plan-price">
+                    <h3>Popular Plan</h3>
+                    <p>99$<span>/mo</span></p>
+                </div>
+                <ul>
+                    <li>Consectetur adipiscing</li>
+                    <li>Nunc luctus nulla et tellus</li>
+                    <li>Suspendisse quis metus</li>
+                    <li>Vestibul varius fermentum erat</li>
+                    <li>-</li>
+                    <li><a href="#">Buy Now</a></li>
+                </ul>
+            </div>
+        
+            <div class="pricing-card">
+                <div class="plan-price">
+                    <h3>Premium Plan</h3>
+                    <p>199$<span>/mo</span></p>
+                </div>
+                <ul>
+                    <li>Consectetur adipiscing</li>
+                    <li>Nunc luctus nulla et tellus</li>
+                    <li>Suspendisse quis metus</li>
+                    <li>Vestibul varius fermentum erat</li>
+                    <li>Suspendisse quis metus</li>
+                    <li><a href="#">Get Plan</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+              
+    <div class="stats-container">
+        <div class="stat-card">
+            <i class="fas fa-mars-stroke"></i>
+            <h1>100%</h1>
+            <p>Faster</p>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-mug-hot"></i>
+            <h1>700</h1>
+            <p>Cup of Coffee</p>
+        </div>
+        <div class="stat-card">
+            <i class="far fa-user"></i>
+            <h1>10000+</h1>
+            <p>Active clients</p>
+        </div>
+        <div class="stat-card">
+            <i class="far fa-heart"></i>
+            <h1>1689</h1>
+            <p>People's Love</p>
+        </div>
+    </div> 
+    
+    <div id="blog" class="blog-container">
+        <div class="blog-header">
+            <h2>Blog</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa modi ab ut.</p>                
+        </div>
+    
+        <div class="blog-card-container">
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="https://images.pexels.com/photos/33972/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+                </div>    
+                <div class="blog-card-content">
+                    <div class="date">
+                        <p><i class="fas fa-calendar-week"></i> 10 April, 2018</p>
+                    </div>
+                    <a href=""><h3>How to Design a Website For Your App</h3></a>
+                        <div class="meta-tags">
+                            <span><i class="far fa-eye"></i> 4.5k views</span>
+                            <span><i class="far fa-comments"></i>  07</span>
+                            <span><i class="fas fa-reply"></i>  332</span>
+                        </div>
+                </div>
+            </div>
+              
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="https://images.pexels.com/photos/33972/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+                </div>    
+                <div class="blog-card-content">
+                    <div class="date">
+                        <p><i class="fas fa-calendar-week"></i> 10 April, 2018</p>
+                    </div>
+                    <a href=""><h3>How to Design a Website For Your App</h3></a>
+                        <div class="meta-tags">
+                            <span><i class="far fa-eye"></i> 4.5k views</span>
+                            <span><i class="far fa-comments"></i>  07</span>
+                            <span><i class="fas fa-reply"></i>  332</span>
+                        </div>
+                </div>
+            </div>
+              
+            <div class="blog-card">
+                <div class="blog-card-image">
+                    <img src="https://images.pexels.com/photos/33972/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+                </div>    
+                <div class="blog-card-content">
+                    <div class="date">
+                        <p><i class="fas fa-calendar-week"></i> 10 April, 2018</p>
+                    </div>
+                    <a href=""><h3>How to Design a Website For Your App</h3></a>
+                        <div class="meta-tags">
+                            <span><i class="far fa-eye"></i> 4.5k views</span>
+                            <span><i class="far fa-comments"></i>  07</span>
+                            <span><i class="fas fa-reply"></i>  332</span>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+               
+    <div id="subscribe" class="subscribe-container">
+        <div class="newsletter">
+            <h3>Subscribe to Newletter</h3>
+            <p>Wekkly Freebies and More!</p>
+                <form action="">
+                    <input type="text" placeholder="Name">
+                    <input type="number" placeholder="Phone">
+                    <input type="email" placeholder="Email">
+                </form>
+            <a href="#">SUBSCRIBE NOW</a>
+        </div>
+
+        <div class="sub-card-container">
+            <div class="sub-card-content">
+                <i class="fas fa-bullhorn"></i>
+                <div class="sub-card">
+                    <h5>Weekly Free Learning Materials</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, laborum libero beatae obcaecati.</p>
+                </div>
+            </div>
+            <div class="sub-card-content">
+                <i class="fas fa-book"></i>
+                <div class="sub-card">
+                    <h5>Free PDF to Get Started</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, laborum libero beatae obcaecati.</p>
+                </div>
+            </div>
+            <div class="sub-card-content">
+                <i class="fas fa-clock"></i>
+                <div class="sub-card">
+                    <h5>10% Instant Discoun</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, laborum libero beatae obcaecati.</p>
+                </div>
+            </div>
+        </div>            
+    </div>
+              
+    <div class="purchase-container">
+        <h1>Are You Ready To Get Started?</h1>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
+        Lorem ipsum dolor sit amet, consectetuer
+        </p>
+        <a href="#">PURCHASE NOW</a>
+    </div>
+              
+              
+    <div id="contact" class="contact-container">
+        <div class="contact-header">
+            <h2>GET IN TOUCH</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa modi ab ut.</p>                
+        </div>
+        <div class="contact-form-container">
+            <div class="contact-form">
+                <form action="">
+                    <input type="text" placeholder="Name" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="text" placeholder="Subject" required>
+                    <textarea name="" id="" placeholder="Your Message" cols="30" rows="10" required></textarea>
+                    <input class="btn" type="submit" value="Send Message">
+                </form>
+            </div>
+            <div class="contact-address">
+                <div class="contact-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h5>Location</h5>
+                    <p>1900 Pico Blvd, New York br Centernial, colorado</p>
+                </div>
+                <div class="contact-email">
+                    <i class="fas fa-envelope-square"></i>
+                    <h5>E-mail</h5>
+                    <p>info@example.com</p>
+                </div>
+                <div class="contact-phone">
+                    <i class="fas fa-phone"></i>
+                    <h5>Phone</h5>
+                    <p>+48 123 456 789</p>
+                </div>
+                <div class="contact-social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                </div>
+            </div>    
+        </div>            
+    </div>
+</body>
+</html>
